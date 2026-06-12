@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Kencan Afrillia</title>
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (via CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+    <!-- BAGIAN 1: KODE CSS (Pindahkan ini ke file style.css nantinya) -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FDFBF7;
+            color: #334155;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .font-handwriting { font-family: 'Caveat', cursive; }
+        
+        .fade-in { animation: fadeIn 0.6s ease-in-out forwards; }
+        .slide-up { animation: slideUp 0.5s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart-particle {
+            position: absolute;
+            top: -10vh;
+            animation: fall linear forwards;
+            color: #FFB6C1;
+            fill: #FFB6C1;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Utility classes */
+        .hidden { display: none !important; }
+        .step-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<!-- BAGIAN 2: KODE HTML (Ini akan tetap di index.html nantinya) -->
+<body class="min-h-[100dvh] w-full flex justify-center items-center">
+
+    <div class="w-full max-w-md min-h-[100dvh] bg-[#EDF1F4] sm:bg-[#FDFBF7] sm:shadow-2xl sm:border border-slate-100 relative overflow-hidden flex flex-col items-center justify-center p-6">
+        
+        <!-- Modal Pesan Custom (Pengganti Alert browser) -->
+        <div id="custom-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+            <div class="bg-white p-6 rounded-2xl shadow-xl max-w-sm w-full text-center slide-up">
+                <p id="modal-text" class="text-slate-700 mb-6 font-semibold"></p>
+                <button onclick="document.getElementById('custom-modal').classList.add('hidden')" class="bg-[#5D80A6] text-white py-2 px-6 rounded-full font-bold">Tutup</button>
+            </div>
+        </div>
+
+        <!-- STEP 1: AMPLOP -->
+        <div id="step-1" class="step-container fade-in cursor-pointer" onclick="goToStep(2)">
+            <div class="relative mb-8 transform transition hover:scale-105 active:scale-95 animate-pulse">
+                <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="180" height="120" rx="10" fill="#FFE5E5"/>
+                    <path d="M0 10C0 4.47715 4.47715 0 10 0H170C175.523 0 180 4.47715 180 10V60L90 100L0 60V10Z" fill="#FFD1D1"/>
+                    <path d="M0 120L80 70L0 20V120Z" fill="#FFC2C2"/>
+                    <path d="M180 120L100 70L180 20V120Z" fill="#FFC2C2"/>
+                    <circle cx="90" cy="65" r="18" fill="#FF4D4D" class="shadow-md" />
+                    <i data-lucide="heart" class="absolute text-white w-5 h-5" style="top: 56px; left: 80px; fill: white;"></i>
+                </svg>
+            </div>
+            <h1 class="font-handwriting text-3xl font-bold text-slate-700 mb-1">UNDANGAN PRIBADI</h1>
+            <p class="font-handwriting text-xl text-slate-500 mb-8">buat Afrillia</p>
+            <p class="text-sm text-slate-400 max-w-xs animate-bounce mt-4 text-center">
+                Ada sesuatu buat kamu sayangku. Tap amplopnya buat buka. 💌
+            </p>
+        </div>
+
+        <!-- STEP 2: AJAKAN KENCAN -->
+        <div id="step-2" class="step-container hidden fade-in py-10 relative">
+            <div class="bg-white p-3 pb-10 shadow-lg rounded-sm transform rotate-[-3deg] mb-8 w-48 relative">
+                <div class="w-full h-48 bg-slate-200 overflow-hidden mb-2 rounded-sm">
+                    <img src="afril.jpeg" alt="Foto Pasangan" class="w-full h-full object-cover"/>
+                </div>
+                <p class="font-handwriting text-center text-lg text-slate-600 absolute bottom-2 left-0 w-full">buat Afrillia</p>
+            </div>
+
+            <h2 class="font-handwriting text-4xl text-center font-bold text-slate-800 mb-2 leading-tight">
+                Mau enggaa kamu<br/>pergi kencan<br/>denganku?
+            </h2>
+            <p class="font-handwriting text-lg text-slate-500 mb-10">udaa, pencet aja tombol "mau banget"</p>
+
+            <div class="flex flex-col items-center gap-4 w-full h-32 relative" id="button-container">
+                <button onclick="goToStep(3)" class="bg-[#5D80A6] text-white font-bold py-3 px-10 rounded-full shadow-lg hover:bg-[#4a6b8c] active:scale-95 transition text-lg z-10">
+                    mau buanget!
+                </button>
+                <button id="btn-no" class="bg-slate-100 text-slate-500 font-semibold py-2 px-6 rounded-full shadow-sm hover:bg-slate-200 transition text-sm z-20">
+                    ga ah
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 3: ANIMASI KONFIRMASI -->
+        <div id="step-3" class="step-container hidden fade-in relative w-full h-full">
+            <div id="particles-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+            <div class="z-10 bg-white/60 backdrop-blur-sm p-6 rounded-3xl shadow-xl text-center transform scale-110">
+                <h2 class="font-handwriting text-5xl font-bold text-[#D9777F] mb-2">Yeay!</h2>
+                <p class="font-handwriting text-3xl text-slate-700">Afrillia bilang iya 💕</p>
+            </div>
+        </div>
+
+        <!-- STEP 4: PEMILIHAN WAKTU -->
+        <div id="step-4" class="step-container hidden slide-up w-full !justify-start pt-10">
+            <h2 class="font-handwriting text-4xl font-bold text-center text-slate-800 mb-8 w-full">Kapan sayangku free?</h2>
+            
+            <div class="space-y-6 flex-grow w-full">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                    <label class="flex items-center text-sm font-bold text-slate-500 mb-2">
+                        <i data-lucide="calendar-heart" class="w-4 h-4 mr-2 text-pink-400"></i> Tanggal
+                    </label>
+                    <input type="date" id="input-date" class="w-full p-3 rounded-xl bg-[#FDFBF7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-300 text-slate-700"/>
+                </div>
+
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                    <label class="flex items-center text-sm font-bold text-slate-500 mb-3">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2 text-blue-400"></i> Waktu
+                    </label>
+                    <div class="flex flex-wrap gap-2" id="time-pills">
+                        <button onclick="selectPill('time', 'Pagi', this)" class="time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-slate-100 text-slate-600">Pagi</button>
+                        <button onclick="selectPill('time', 'Siang', this)" class="time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-slate-100 text-slate-600">Siang</button>
+                        <button onclick="selectPill('time', 'Sore', this)" class="time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-slate-100 text-slate-600">Sore</button>
+                        <button onclick="selectPill('time', 'Malam', this)" class="time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-slate-100 text-slate-600">Malam</button>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-slate-100">
+                        <label class="text-xs text-slate-400 mb-2 block">Jam pastinya (opsional)</label>
+                        <input type="time" id="input-exact-time" class="w-full p-2 rounded-xl bg-[#FDFBF7] border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-300 text-slate-700 text-sm"/>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-next-4" onclick="goToStep(5)" disabled class="mt-10 w-full py-4 rounded-2xl font-bold text-lg transition-all bg-slate-200 text-slate-400 cursor-not-allowed">
+                Lanjut
+            </button>
+        </div>
+
+        <!-- STEP 5: PEMILIHAN AKTIVITAS -->
+        <div id="step-5" class="step-container hidden slide-up w-full !justify-start pt-10">
+            <p class="font-handwriting text-center text-slate-400 text-xl w-full">rencana kita</p>
+            <h2 class="font-handwriting text-4xl font-bold text-center text-slate-800 mb-6 w-full">Nanti kita ngapain sayang?</h2>
+            
+            <div class="grid grid-cols-2 gap-3 mb-4 w-full">
+                <button onclick="selectActivity('Makan bareng', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="utensils" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Makan bareng</span></button>
+                <button onclick="selectActivity('Ngopi cantik', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="coffee" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Ngopi cantik</span></button>
+                <button onclick="selectActivity('Nonton', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="film" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Nonton</span></button>
+                <button onclick="selectActivity('Jalan sore', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="footprints" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Jalan sore</span></button>
+                <button onclick="selectActivity('Piknik', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="tent-tree" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Piknik</span></button>
+                <button onclick="selectActivity('Seru-seruan', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="gamepad-2" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Seru-seruan</span></button>
+                <button onclick="selectActivity('Belanja', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="shopping-bag" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Belanja</span></button>
+                <button onclick="selectActivity('Mager di rumah', this)" class="act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm"><i data-lucide="sofa" class="w-6 h-6 mb-2"></i><span class="text-sm font-semibold">Mager di rumah</span></button>
+            </div>
+
+            <div class="mb-6 w-full">
+                <input type="text" id="input-custom-act" placeholder="atau tulis ide kamu..." class="w-full p-4 rounded-2xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#5D80A6] text-slate-700 shadow-sm"/>
+            </div>
+
+            <div class="mt-auto w-full">
+                <button id="btn-next-5" onclick="goToStep(6)" disabled class="w-full py-4 rounded-2xl font-bold text-lg transition-all bg-slate-200 text-slate-400 cursor-not-allowed">
+                    Oke
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 6: DRESS CODE -->
+        <div id="step-6" class="step-container hidden slide-up w-full !justify-start pt-10 py-10">
+            <p class="font-handwriting text-center text-slate-400 text-xl w-full">biar makin niat</p>
+            <h2 class="font-handwriting text-4xl font-bold text-center text-slate-800 mb-8 w-full">Dress code-nya?</h2>
+            
+            <div class="flex flex-wrap gap-3 justify-center mb-8 w-full">
+                <button onclick="selectDress('Santai aja', this)" class="dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm">Santai aja</button>
+                <button onclick="selectDress('Cutesy / imut', this)" class="dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm">Cutesy / imut</button>
+                <button onclick="selectDress('Rapi / formal', this)" class="dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm">Rapi / formal</button>
+                <button onclick="selectDress('Couple-an', this)" class="dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm">Couple-an</button>
+                <button onclick="selectDress('Satu warna', this)" class="dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 shadow-sm">Satu warna</button>
+            </div>
+
+            <div class="mb-10 w-full px-2">
+                <input type="text" id="input-custom-dress" placeholder="atau tulis sendiri..." class="w-full p-4 rounded-2xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#D9777F] text-slate-700 shadow-sm text-center"/>
+            </div>
+
+            <button id="btn-next-6" onclick="goToStep(7)" disabled class="mt-auto w-full py-4 rounded-2xl font-bold text-lg transition-all bg-slate-200 text-slate-400 cursor-not-allowed">
+                Lanjut
+            </button>
+        </div>
+
+        <!-- STEP 7: PESAN TAMBAHAN -->
+        <div id="step-7" class="step-container hidden slide-up w-full !justify-start pt-10 py-10">
+            <p class="font-handwriting text-center text-slate-400 text-xl w-full">terakhir</p>
+            <h2 class="font-handwriting text-4xl font-bold text-center text-slate-800 mb-8 leading-tight w-full">
+                Ada pesan buat <br/><span class="text-[#5D80A6]">Pengagum Rahasiamu</span>?
+            </h2>
+            
+            <div class="w-full mb-8">
+                <textarea id="input-message" rows="5" placeholder="opsional, boleh kosong kok sayang..." class="w-full p-4 rounded-3xl bg-white border-2 border-dashed border-slate-300 focus:outline-none focus:border-[#5D80A6] focus:ring-0 text-slate-700 shadow-sm resize-none"></textarea>
+            </div>
+
+            <button onclick="goToStep(8)" class="mt-auto w-full py-4 rounded-2xl font-bold text-lg bg-[#5D80A6] text-white shadow-lg hover:bg-[#4a6b8c] transition-all flex justify-center items-center gap-2">
+                Bikin tiketnya <i data-lucide="check" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- STEP 8: TIKET -->
+        <div id="step-8" class="step-container hidden slide-up w-full !justify-start pt-4 pb-10">
+            <div class="relative bg-white w-full rounded-2xl shadow-xl overflow-hidden mb-8 border border-slate-200">
+                <div class="absolute top-[80px] -left-4 w-8 h-8 bg-[#EDF1F4] sm:bg-[#FDFBF7] rounded-full z-10 border-r border-slate-200"></div>
+                <div class="absolute top-[80px] -right-4 w-8 h-8 bg-[#EDF1F4] sm:bg-[#FDFBF7] rounded-full z-10 border-l border-slate-200"></div>
+                
+                <div class="bg-[#D9777F] text-white p-5 text-center relative">
+                    <p class="text-xs tracking-[0.3em] opacity-80 font-bold mb-1">ADMIT TWO</p>
+                    <h2 class="font-handwriting text-4xl mt-1">Tiket Kencan</h2>
+                </div>
+
+                <div class="border-t-2 border-dashed border-slate-300 mx-6 mt-4 relative top-2"></div>
+
+                <div class="p-6 pt-8 relative">
+                    <div class="absolute top-6 right-6 w-16 h-16 bg-white p-1 shadow-md rounded-sm transform rotate-6 border border-slate-100">
+                        <img src="afril.jpeg" alt="Thumbnail" class="w-full h-full object-cover"/>
+                    </div>
+
+                    <div class="space-y-4 mb-6 pr-14 text-left w-full">
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold tracking-wider mb-1">UNTUK</p>
+                            <p class="font-semibold text-slate-800">Afrillia</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold tracking-wider mb-1">KAPAN</p>
+                            <p id="ticket-date" class="font-semibold text-slate-800"></p>
+                            <p id="ticket-time" class="text-sm text-slate-600"></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold tracking-wider mb-1">ACARA</p>
+                            <p id="ticket-activity" class="font-semibold text-slate-800"></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold tracking-wider mb-1">DRESS CODE</p>
+                            <p id="ticket-dress" class="font-semibold text-slate-800"></p>
+                        </div>
+                        <div id="ticket-message-container" class="hidden">
+                            <p class="text-xs text-slate-400 font-bold tracking-wider mb-1">PESAN</p>
+                            <p id="ticket-message" class="text-sm italic text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100"></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-4 rounded-xl text-center">
+                        <p class="font-handwriting text-xl text-[#D9777F] leading-tight">
+                        Yeay, date dengan cewe kesayanganku! Nanti aku jemput pada waktunya ya sayangku. 
+                        <br/><br/>
+                        <span class="text-slate-600 text-lg">dari Pengagum Rahasiamu, buat Afrillia 💕</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col gap-3 px-2">
+                <button onclick="shareTicket()" class="w-full py-4 rounded-2xl font-bold text-slate-700 bg-white border border-slate-200 shadow-sm hover:bg-slate-50 transition-all flex justify-center items-center gap-2">
+                    <i data-lucide="share-2" class="w-5 h-5 text-blue-500"></i> Bagikan tiket
+                </button>
+                <button onclick="sendWhatsApp()" class="w-full py-4 rounded-2xl font-bold text-white bg-[#25D366] shadow-md hover:bg-[#20bd5a] transition-all flex justify-center items-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Chat WhatsApp
+                </button>
+                <button onclick="resetApp()" class="mt-4 flex justify-center items-center gap-2 text-slate-400 text-sm hover:text-slate-600 transition">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Ulang dari awal
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BAGIAN 3: KODE JAVASCRIPT (Pindahkan ini ke file script.js nantinya) -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+
+        // Menyimpan data form
+        const formData = {
+            date: '',
+            timeOfDay: '',
+            exactTime: '',
+            activity: '',
+            customActivity: '',
+            dressCode: '',
+            customDressCode: '',
+            message: ''
+        };
+
+        // Fungsi berpindah halaman
+        function goToStep(step) {
+            document.querySelectorAll('.step-container').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step-' + step).classList.remove('hidden');
+
+            if (step === 3) startParticles();
+            if (step === 8) renderTicket();
+        }
+
+        // Tampilkan pesan modal custom
+        function showModal(text) {
+            document.getElementById('modal-text').innerText = text;
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        // === LOGIKA STEP 2 (Tombol Ga ah kabur) ===
+        const btnNo = document.getElementById('btn-no');
+        const containerBtn = document.getElementById('button-container');
+        
+        function moveBtnNo() {
+            const containerRect = containerBtn.getBoundingClientRect();
+            const maxX = containerRect.width - btnNo.offsetWidth;
+            const maxY = containerRect.height - btnNo.offsetHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        btnNo.addEventListener('mouseover', moveBtnNo);
+        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); moveBtnNo(); });
+
+        // === LOGIKA STEP 3 (Partikel Hati) ===
+        function startParticles() {
+            const container = document.getElementById('particles-container');
+            container.innerHTML = ''; // Bersihkan partikel sebelumnya
+
+            for (let i = 0; i < 40; i++) {
+                const heart = document.createElement('i');
+                heart.setAttribute('data-lucide', 'heart');
+                heart.className = 'heart-particle';
+                
+                const size = Math.random() * 20 + 10;
+                heart.style.width = size + 'px';
+                heart.style.height = size + 'px';
+                heart.style.left = (Math.random() * 100) + '%';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                heart.style.animationDelay = (Math.random() * 1) + 's';
+                
+                container.appendChild(heart);
+            }
+            lucide.createIcons();
+
+            setTimeout(() => {
+                goToStep(4);
+            }, 3000);
+        }
+
+        // === LOGIKA STEP 4 (Validasi Waktu) ===
+        const inputDate = document.getElementById('input-date');
+        const inputExactTime = document.getElementById('input-exact-time');
+        const btnNext4 = document.getElementById('btn-next-4');
+
+        inputDate.addEventListener('change', (e) => {
+            formData.date = e.target.value;
+            checkStep4();
+        });
+        inputExactTime.addEventListener('change', (e) => formData.exactTime = e.target.value);
+
+        function selectPill(type, value, element) {
+            if (type === 'time') {
+                formData.timeOfDay = value;
+                document.querySelectorAll('.time-btn').forEach(btn => {
+                    btn.className = 'time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-slate-100 text-slate-600 hover:bg-slate-200';
+                });
+                element.className = 'time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-[#5D80A6] text-white shadow-md';
+                checkStep4();
+            }
+        }
+
+        function checkStep4() {
+            if (formData.date !== '' && formData.timeOfDay !== '') {
+                btnNext4.disabled = false;
+                btnNext4.className = "mt-10 w-full py-4 rounded-2xl font-bold text-lg transition-all bg-[#D9777F] text-white shadow-lg hover:bg-[#c6646c]";
+            } else {
+                btnNext4.disabled = true;
+                btnNext4.className = "mt-10 w-full py-4 rounded-2xl font-bold text-lg transition-all bg-slate-200 text-slate-400 cursor-not-allowed";
+            }
+        }
+
+        // === LOGIKA STEP 5 (Aktivitas) ===
+        const inputCustomAct = document.getElementById('input-custom-act');
+        const btnNext5 = document.getElementById('btn-next-5');
+
+        function selectActivity(value, element) {
+            formData.activity = value;
+            formData.customActivity = '';
+            inputCustomAct.value = '';
+
+            document.querySelectorAll('.act-btn').forEach(btn => {
+                btn.className = 'act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 hover:bg-slate-50 shadow-sm';
+            });
+            element.className = 'act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-blue-50 border-[#5D80A6] text-[#5D80A6] shadow-sm transform scale-[1.02]';
+            checkStep5();
+        }
+
+        inputCustomAct.addEventListener('input', (e) => {
+            formData.customActivity = e.target.value;
+            if(e.target.value !== '') {
+                formData.activity = '';
+                document.querySelectorAll('.act-btn').forEach(btn => {
+                    btn.className = 'act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 hover:bg-slate-50 shadow-sm';
+                });
+            }
+            checkStep5();
+        });
+
+        function checkStep5() {
+            if (formData.activity !== '' || formData.customActivity !== '') {
+                btnNext5.disabled = false;
+                btnNext5.className = "w-full py-4 rounded-2xl font-bold text-lg transition-all bg-[#5D80A6] text-white shadow-lg hover:bg-[#4a6b8c]";
+            } else {
+                btnNext5.disabled = true;
+                btnNext5.className = "w-full py-4 rounded-2xl font-bold text-lg transition-all bg-slate-200 text-slate-400 cursor-not-allowed";
+            }
+        }
+
+        // === LOGIKA STEP 6 (Dress Code) ===
+        const inputCustomDress = document.getElementById('input-custom-dress');
+        const btnNext6 = document.getElementById('btn-next-6');
+
+        function selectDress(value, element) {
+            formData.dressCode = value;
+            formData.customDressCode = '';
+            inputCustomDress.value = '';
+
+            document.querySelectorAll('.dress-btn').forEach(btn => {
+                btn.className = 'dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 hover:bg-slate-50 shadow-sm';
+            });
+            element.className = 'dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-pink-50 border-[#D9777F] text-[#D9777F] shadow-sm transform scale-[1.05]';
+            checkStep6();
+        }
+
+        inputCustomDress.addEventListener('input', (e) => {
+            formData.customDressCode = e.target.value;
+            if(e.target.value !== '') {
+                formData.dressCode = '';
+                document.querySelectorAll('.dress-btn').forEach(btn => {
+                    btn.className = 'dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 hover:bg-slate-50 shadow-sm';
+                });
+            }
+            checkStep6();
+        });
+
+        function checkStep6() {
+            if (formData.dressCode !== '' || formData.customDressCode !== '') {
+                btnNext6.disabled = false;
+                btnNext6.className = "mt-auto w-full py-4 rounded-2xl font-bold text-lg transition-all bg-[#D9777F] text-white shadow-lg hover:bg-[#c6646c]";
+            } else {
+                btnNext6.disabled = true;
+                btnNext6.className = "mt-auto w-full py-4 rounded-2xl font-bold text-lg transition-all bg-slate-200 text-slate-400 cursor-not-allowed";
+            }
+        }
+
+        // === LOGIKA STEP 7 (Pesan) ===
+        const inputMessage = document.getElementById('input-message');
+        inputMessage.addEventListener('input', (e) => {
+            formData.message = e.target.value;
+        });
+
+        // === LOGIKA STEP 8 (Render Tiket & Share) ===
+        let finalDateStr, finalTimeStr, finalActivityStr, finalDressCodeStr;
+
+        function renderTicket() {
+            const dateObj = new Date(formData.date);
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            finalDateStr = dateObj.toLocaleDateString('id-ID', options);
+            
+            finalTimeStr = formData.timeOfDay + (formData.exactTime ? ` (${formData.exactTime})` : '');
+            finalActivityStr = formData.customActivity || formData.activity;
+            finalDressCodeStr = formData.customDressCode || formData.dressCode;
+
+            document.getElementById('ticket-date').innerText = finalDateStr;
+            document.getElementById('ticket-time').innerText = finalTimeStr;
+            document.getElementById('ticket-activity').innerText = finalActivityStr;
+            document.getElementById('ticket-dress').innerText = finalDressCodeStr;
+
+            const msgContainer = document.getElementById('ticket-message-container');
+            if (formData.message) {
+                msgContainer.classList.remove('hidden');
+                document.getElementById('ticket-message').innerText = `"${formData.message}"`;
+            } else {
+                msgContainer.classList.add('hidden');
+            }
+        }
+
+        function shareTicket() {
+            const text = `Hai sayang, ini tiket kencan kita!\n\nKapan: ${finalDateStr} - ${finalTimeStr}\nAcara: ${finalActivityStr}\nDress code: ${finalDressCodeStr}\n\nCan't wait! ❤️`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Tiket Kencan Kita',
+                    text: text,
+                }).catch(err => console.log("Error sharing", err));
+            } else {
+                showModal("Browser kamu tidak mendukung fitur share otomatis. Silakan screenshot tiket ini ya!");
+            }
+        }
+
+        function sendWhatsApp() {
+            const text = `Halo sayang! Aku udah isi undangannya ya. \n\n*Tiket Kencan Kita*\n📅 Tanggal: ${finalDateStr}\n⏰ Waktu: ${finalTimeStr}\n🎈 Acara: ${finalActivityStr}\n👗 Dress code: ${finalDressCodeStr}\n💬 Pesan: ${formData.message || '-'}\n\nSee you soon! 💕`;
+            window.open(`https://wa.me/6289691115093?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function resetApp() {
+            // Reset Data
+            formData.date = ''; formData.timeOfDay = ''; formData.exactTime = '';
+            formData.activity = ''; formData.customActivity = '';
+            formData.dressCode = ''; formData.customDressCode = ''; formData.message = '';
+            
+            // Reset Inputs
+            inputDate.value = ''; inputExactTime.value = '';
+            inputCustomAct.value = ''; inputCustomDress.value = ''; inputMessage.value = '';
+            
+            // Reset Buttons Visuals
+            document.querySelectorAll('.time-btn').forEach(b => b.className = 'time-btn py-2 px-4 rounded-full text-sm font-semibold transition bg-slate-100 text-slate-600 hover:bg-slate-200');
+            document.querySelectorAll('.act-btn').forEach(b => b.className = 'act-btn p-4 rounded-2xl flex flex-col items-center justify-center transition-all border-2 bg-white border-transparent text-slate-500 hover:bg-slate-50 shadow-sm');
+            document.querySelectorAll('.dress-btn').forEach(b => b.className = 'dress-btn py-3 px-5 rounded-full text-sm font-semibold transition-all border-2 bg-white border-transparent text-slate-500 hover:bg-slate-50 shadow-sm');
+            
+            checkStep4(); checkStep5(); checkStep6();
+            
+            goToStep(1);
+        }
+    </script>
+</body>
+</html>
